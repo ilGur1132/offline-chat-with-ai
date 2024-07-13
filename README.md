@@ -20,5 +20,3 @@ Webapp & PWA: https://webbrowsertools.com/offline-chat-with-ai/
 ------------------------------
 
 Support & FAQ: https://mybrowseraddon.com/offline-chat-with-ai.html  
-
-If you have a feature request or found a bug to report, please fill out the bug report form on the addon's homepage (https://mybrowseraddon.com/offline-chat-with-ai.html).
