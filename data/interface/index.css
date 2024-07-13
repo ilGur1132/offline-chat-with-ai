@@ -748,8 +748,13 @@ html:has(.toggle-sessions[state='show']) .container .sessions {
   box-shadow: 1px 0 0 0 rgb(0,0,0,0.25);
 }
 
-html[context="webapp"] .toolbar {
+html[context="webapp"] .toolbar table tr:has(#support),
+html[context="webapp"] .toolbar table tr:has(#donation) {
   display: none;
+}
+
+html[context="webapp"] .footer {
+  border-bottom: solid 1px rgba(0, 0, 0, 0.25);
 }
 
 html[context="popup"] tr:has(#print),
