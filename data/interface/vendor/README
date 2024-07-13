@@ -1,0 +1,18 @@
+This app uses the following open-source JavaScript libraries:
+
+A. Markdown-it
+1. vendor/markdown/markdown-it.js >> https://cdn.jsdelivr.net/npm/markdown-it@14.1.0/dist/markdown-it.js
+
+B. Highlightjs
+1. vendor/highlight/highlight.js >> https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.js
+2. vendor/highlight/styles/default.css >> https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/default.css
+
+C. Markdown -> plugins
+1. vendor/markdown/plugins/markdown-it-ins.js >> https://cdn.jsdelivr.net/npm/markdown-it-ins@4.0.0/dist/markdown-it-ins.js
+2. vendor/markdown/plugins/markdown-it-sub.js >> https://cdn.jsdelivr.net/npm/markdown-it-sub@2.0.0/dist/markdown-it-sub.js
+3. vendor/markdown/plugins/markdown-it-sup.js >> https://cdn.jsdelivr.net/npm/markdown-it-sup@2.0.0/dist/markdown-it-sup.js
+4. vendor/markdown/plugins/markdown-it-mark.js >> https://cdn.jsdelivr.net/npm/markdown-it-mark@4.0.0/dist/markdown-it-mark.js
+5. vendor/markdown/plugins/markdown-it-abbr.js >> https://cdn.jsdelivr.net/npm/markdown-it-abbr@2.0.0/dist/markdown-it-abbr.js
+6. vendor/markdown/plugins/markdown-it-emoji.js >> https://cdn.jsdelivr.net/npm/markdown-it-emoji@3.0.0/dist/markdown-it-emoji.js
+7. vendor/markdown/plugins/markdown-it-deflist.js >> https://cdn.jsdelivr.net/npm/markdown-it-deflist@3.0.0/dist/markdown-it-deflist.js
+8. vendor/markdown/plugins/markdown-it-footnote.js >> https://cdn.jsdelivr.net/npm/markdown-it-footnote@4.0.0/dist/markdown-it-footnote.js

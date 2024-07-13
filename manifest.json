@@ -1,0 +1,42 @@
+{
+  "version": "0.1.1",
+  "manifest_version": 3,
+  "offline_enabled":  true,
+  "name": "Offline Chat with AI",
+  "minimum_chrome_version": "127",
+  "homepage_url": "https://mybrowseraddon.com/offline-chat-with-ai.html",
+  "description": "Chat with the built-in Gemini Nano in your browser (free & offline).",
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": [
+    "storage",
+    "sidePanel", 
+    "contextMenus"
+  ],
+  "action": {
+    "default_title": "Offline Chat with AI",
+    "default_icon": {
+      "16": "data/icons/16.png",
+      "32": "data/icons/32.png",
+      "48": "data/icons/48.png",
+      "64": "data/icons/64.png"
+    }
+  },
+  "commands": {
+    "offline-chat": {
+      "description": "Offline Chat with AI",
+      "suggested_key": {
+        "mac": "Alt+Shift+V",
+        "default": "Alt+Shift+V"
+      }
+    }
+  },
+  "icons": {
+    "16": "data/icons/16.png",
+    "32": "data/icons/32.png",
+    "48": "data/icons/48.png",
+    "64": "data/icons/64.png",
+    "128": "data/icons/128.png"
+  }
+}

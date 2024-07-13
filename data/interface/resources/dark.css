@@ -1,0 +1,138 @@
+html[dark] {
+  color-scheme: dark;
+}
+
+html[dark] .footer,
+html[dark] .footer .submit,
+html[dark] .footer .input textarea {
+  background-color: #111;
+}
+
+html[dark] .container .chat .item[open],
+html[dark] .container .settings .content table tr td.value input[type='number'],
+html[dark] .container .sessions .content table tr td.value input[type='number'] {
+  background-color: #222;
+}
+
+html[dark] body,
+html[dark] .scroll,
+html[dark] .container .chat,
+html[dark] .container .settings,
+html[dark] .container .sessions,
+html[dark] .container .chat .item[open] > summary,
+html[dark] .container .settings .content table tr td,
+html[dark] .container .sessions .content table tr td,
+html[dark] .container .chat .item .ai .answer .content .hljs {
+  background-color: #333;
+}
+
+html[dark] .container .chat .item,
+html[dark] .container .chat .item .ai .answer .content,
+html[dark] .container .chat .item .user .question textarea {
+  background-color: #444;
+}
+
+html[dark] .container {
+  background-color: #555;
+}
+
+html[dark] .footer .input textarea,
+html[dark] .container .chat .item summary,
+html[dark] .container .settings .content table tr td,
+html[dark] .container .sessions .content table tr td,
+html[dark] .container .settings .content table tr td.name,
+html[dark] .container .sessions .content table tr td.name,
+html[dark] .container .settings .content table tr td.value input[type='number'],
+html[dark] .container .sessions .content table tr td.value input[type='number'] {
+  color: #e1e1e1;
+}
+
+html[dark] .container .chat .item .ai .answer .content,
+html[dark] .container .chat .item .user .question textarea,
+html[dark] .container .chat .item .ai .answer .content .hljs {
+  color: #f5f5f5;
+}
+
+html[dark] .container .chat .item .user .title .time,
+html[dark] .container .chat .item .ai .answer .header .title {
+  color: #ac62ff;
+}
+
+html[dark] .scroll div svg,
+html[dark] .footer .input svg,
+html[dark] .container .chat svg,
+html[dark] .toolbar table tr td svg,
+html[dark] .toggle-settings table tr td svg,
+html[dark] .toggle-sessions table tr td svg,
+html[dark] .container .chat .item summary .header svg {
+  fill: #e1e1e1;
+}
+
+html[dark] .footer,
+html[dark] .container,
+html[dark] .footer .submit,
+html[dark] .container .settings .content table tr td.value input[type='number'],
+html[dark] .container .sessions .content table tr td.value input[type='number'] {
+  border-color: #808080;
+}
+
+html[dark] .scroll div:hover,
+html[dark] .toolbar table tr td:hover,
+html[dark] .toggle-settings table tr td:hover,
+html[dark] .toggle-sessions table tr td:hover,
+html[dark] .container .chat .item summary .header .copy:hover,
+html[dark] .container .settings .content table tr td.remove:hover,
+html[dark] .container .sessions .content table tr td.remove:hover,
+html[dark] .container .settings .content table tr td.session:hover,
+html[dark] .container .sessions .content table tr td.session:hover {
+  background-color: rgba(255,255,255,0.25);
+}
+
+html[dark] .footer .submit:hover,
+html[dark] .toggle-settings[state='show'] table tr td:hover,
+html[dark] .toggle-sessions[state='show'] table tr td:hover {
+  background-color: rgba(0,0,0,0.25);
+}
+
+html[dark]:has(.toggle-settings[state='show']) .container .settings,
+html[dark]:has(.toggle-sessions[state='show']) .container .sessions {
+  box-shadow: 1px 0 0 0 rgb(255,255,255,0.25);
+}
+
+html[dark] .container .chat .item .ai .answer .content .hljs .hljs-comment {
+  color: #299797;
+}
+
+html[dark] .container .chat .item .ai .answer .content .hljs .hljs-title,
+html[dark] .container .chat .item .ai .answer .content .hljs .hljs-section {
+  color: #d93333;
+}
+
+html[dark] .container .chat .item .ai .answer .content .hljs .hljs-type,
+html[dark] .container .chat .item .ai .answer .content .hljs .hljs-quote,
+html[dark] .container .chat .item .ai .answer .content .hljs .hljs-string,
+html[dark] .container .chat .item .ai .answer .content .hljs .hljs-number,
+html[dark] .container .chat .item .ai .answer .content .hljs .hljs-deletion,
+html[dark] .container .chat .item .ai .answer .content .hljs .hljs-selector-id,
+html[dark] .container .chat .item .ai .answer .content .hljs .hljs-template-tag,
+html[dark] .container .chat .item .ai .answer .content .hljs .hljs-selector-class {
+  color: #dd6800;
+}
+
+html[dark] .container .chat .item .ai .answer .content .hljs .hljs-code,
+html[dark] .container .chat .item .ai .answer .content .hljs .hljs-bullet,
+html[dark] .container .chat .item .ai .answer .content .hljs .hljs-built_in,
+html[dark] .container .chat .item .ai .answer .content .hljs .hljs-addition {
+  color: #5ab500;
+}
+
+html[dark] .container .chat .item .ai .answer .content .hljs .hljs-link,
+html[dark] .container .chat .item .ai .answer .content .hljs .hljs-regexp,
+html[dark] .container .chat .item .ai .answer .content .hljs .hljs-symbol,
+html[dark] .container .chat .item .ai .answer .content .hljs .hljs-variable,
+html[dark] .container .chat .item .ai .answer .content .hljs .hljs-operator,
+html[dark] .container .chat .item .ai .answer .content .hljs .hljs-selector-attr,
+html[dark] .container .chat .item .ai .answer .content .hljs .hljs-selector-pseudo,
+html[dark] .container .chat .item .ai .answer .content .hljs .hljs-template-variable {
+  color: #708de3;
+}
