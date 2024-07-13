@@ -14,7 +14,7 @@ Note 2: Please ensure the device model in step 5 is fully downloaded or the stat
 The app interface has a toolbar on the left side with a few buttons (self-explanatory with tooltips). Moreover, the interface for the extension can be opened in the toolbar popup, sidebar, separate window, or a new tab. Please right-click on the toolbar button to choose one.
 You can install this app as a PWA on your mobile device, moreover, it is available as a browser extension as-well-as a web application:  
 
-Chrome: https://chrome.google.com/webstore/detail/ndejijikabpibbcjdpoobfdecjfamlan    
+Chrome: https://chromewebstore.google.com/detail/offline-chat-with-ai/ndejijikabpibbcjdpoobfdecjfamlan  
 Webapp & PWA: https://webbrowsertools.com/offline-chat-with-ai/  
 
 ------------------------------
