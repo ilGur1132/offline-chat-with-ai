@@ -9,6 +9,7 @@ In Chrome browser version 127+, the Gemini Nano is available as an offline AI en
 5. Open "chrome://components/" and find the item "Optimization Guide On Device Model" and press the "Check for update" button.   
 
 Note #1: If you do not see the "Optimization Guide On Device Model" in step 5, please disable the settings in steps 2 and 3, restart your browser, and re-enable them again.  
+
 Note #2: Please ensure the device model in step 5 is fully downloaded or the status is Up-to-date before using the addon. The model is rather large (around 2GB) and may take a few minutes to download. So please be patient while it is being downloaded.
 
 The app interface has a toolbar on the left side with a few buttons (self-explanatory with tooltips). Moreover, the interface for the extension can be opened in the toolbar popup, sidebar, separate window, or a new tab. Please right-click on the toolbar button to choose one.
