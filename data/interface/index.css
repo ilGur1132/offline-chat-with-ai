@@ -464,13 +464,8 @@ body {
 }
 
 .container .chat .item {
-  gap: 1px;
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-  width: calc(100% - 2px);
+  width: 100%;
   background-color: #f1f1f1;
-  justify-content: flex-start;
 }
 
 .container .chat .item[open] {
@@ -569,6 +564,7 @@ body {
 .container .chat .item .user {
   gap: 1px;
   width: 100%;
+  margin: 1px;
   display: flex;
   flex-flow: column;
   justify-content: center;
@@ -608,6 +604,8 @@ body {
   width: 38px;
   height: 38px;
   display: flex;
+  min-width: 38px;
+  max-width: 38px;
   margin: 5px 10px;
   border-radius: 50%;
   align-items: center;
@@ -651,7 +649,7 @@ body {
   padding: 10px;
   outline: none;
   min-height: 42px;
-  border-radius: 7px;
+  border-radius: 5px;
   background-color: #fff;
   box-sizing: border-box;
   width: calc(100% - 20px);
@@ -665,7 +663,8 @@ body {
   margin: 10px;
   padding: 10px;
   min-height: 68px;
-  border-radius: 7px;
+  line-height: 1.5;
+  border-radius: 5px;
   box-sizing: border-box;
   width: calc(100% - 20px);
   border: solid 1px rgba(0,0,0,0.25);
@@ -677,7 +676,7 @@ body {
   padding: 15px;
   white-space: pre-wrap;
   box-sizing: border-box;
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.05);
 }
 
 html[loading] .footer .input {
@@ -686,10 +685,6 @@ html[loading] .footer .input {
 
 html[loading] .footer .input svg {
   display: block;
-}
-
-html[loading] .footer .input textarea {
-  display: none;
 }
 
 html[loading] .container .chat .error {

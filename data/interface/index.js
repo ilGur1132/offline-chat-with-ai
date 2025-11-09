@@ -204,17 +204,17 @@ var config = {
     config.elements.support.addEventListener("click", config.interface.listeners.support, false);
     config.elements.donation.addEventListener("click", config.interface.listeners.donation, false);
     config.elements.collapse.addEventListener("click", config.interface.listeners.collapse, false);
-    config.elements.footer.input.addEventListener("input", config.interface.listeners.input, false);
     config.elements.footer.submit.addEventListener("click", config.interface.listeners.submit, false);
     config.elements.scroll.top.addEventListener("click", config.interface.listeners.scroll.top, false);
+    config.elements.footer.textarea.addEventListener("input", config.interface.listeners.input, false);
     config.elements.session.addEventListener("click", config.interface.listeners.session.create, false);
-    config.elements.footer.input.addEventListener("keypress", config.interface.listeners.keypress, false);
     config.elements.options.max.addEventListener("change", config.interface.listeners.options.max, false);
     config.elements.options.fold.addEventListener("change", config.interface.listeners.options.fold, false);
     config.elements.options.dark.addEventListener("change", config.interface.listeners.options.dark, false);
     config.elements.options.topk.addEventListener("change", config.interface.listeners.options.topk, false);
     config.elements.options.font.addEventListener("change", config.interface.listeners.options.font, false);
     config.elements.scroll.bottom.addEventListener("click", config.interface.listeners.scroll.bottom, false);
+    config.elements.footer.textarea.addEventListener("keypress", config.interface.listeners.keypress, false);
     config.elements.options.streaming.addEventListener("change", config.interface.listeners.options.streaming, false);
     config.elements.button.sessions.addEventListener("click", config.interface.listeners.toggle.button.sessions, false);
     config.elements.button.settings.addEventListener("click", config.interface.listeners.toggle.button.settings, false);
@@ -338,39 +338,45 @@ var config = {
       await config.interface.wait(300);
       /*  */
       try {
-        const hasai = window.ai !== null;
-        const cancreate = await window.ai.canCreateTextSession();
-        /*  */
-        if (hasai) {
-          if (cancreate === "readily") {
-            config.engine.ai.defaults = await window.ai.defaultTextSessionOptions();
-            /*  */
-            const max = config.storage.read("options-max") !== undefined ? config.storage.read("options-max") : 10;
-            const font = config.storage.read("options-font") !== undefined ? config.storage.read("options-font") : 14;
-            const fold = config.storage.read("options-fold") !== undefined ? config.storage.read("options-fold") : false;
-            const dark = config.storage.read("options-dark") !== undefined ? config.storage.read("options-dark") : false;
-            const streaming = config.storage.read("options-streaming") !== undefined ? config.storage.read("options-streaming") : true;
-            const topk = config.storage.read("options-topk") !== undefined ? config.storage.read("options-topk") : config.engine.ai.defaults.topK;
-            const temperature = config.storage.read("options-temperature") !== undefined ? config.storage.read("options-temperature") : config.engine.ai.defaults.temperature;
-            /*  */
-            config.elements.options.max.value = max;
-            config.elements.options.font.value = font;
-            config.elements.options.topk.value = topk;
-            config.elements.options.fold.checked = fold;
-            config.elements.options.dark.checked = dark;
-            document.documentElement.removeAttribute("loading");
-            config.elements.options.streaming.checked = streaming;
-            config.elements.options.temperature.value = temperature;
-            if (dark) document.documentElement.setAttribute("dark", '');
-            document.documentElement.style.setProperty("--font-size", font + "px");
-            /*  */
-            config.render.sidebar();
-            window.setTimeout(function () {
-              config.elements.session.click();
-            }, 300);
-          } else {
+        if (window.LanguageModel) {
+          const availability = await window.LanguageModel.availability();
+          /*  */
+          if (availability === "downloading" ) {
             window.setTimeout(config.app.error, 300);
             window.alert("The app is not ready yet! please wait for the AI components to load.");
+          } else {
+            const params = await window.LanguageModel.params();
+            /*  */
+            if (params) {
+              config.engine.ai.defaults = params;
+              /*  */
+              const max = config.storage.read("options-max") !== undefined ? config.storage.read("options-max") : 10;
+              const font = config.storage.read("options-font") !== undefined ? config.storage.read("options-font") : 14;
+              const fold = config.storage.read("options-fold") !== undefined ? config.storage.read("options-fold") : false;
+              const dark = config.storage.read("options-dark") !== undefined ? config.storage.read("options-dark") : false;
+              const streaming = config.storage.read("options-streaming") !== undefined ? config.storage.read("options-streaming") : true;
+              const topk = config.storage.read("options-topk") !== undefined ? config.storage.read("options-topk") : config.engine.ai.defaults.defaultTopK;
+              const temperature = config.storage.read("options-temperature") !== undefined ? config.storage.read("options-temperature") : config.engine.ai.defaults.defaultTemperature;
+              /*  */
+              config.elements.options.max.value = max;
+              config.elements.options.font.value = font;
+              config.elements.options.topk.value = topk;
+              config.elements.options.fold.checked = fold;
+              config.elements.options.dark.checked = dark;
+              document.documentElement.removeAttribute("loading");
+              config.elements.options.streaming.checked = streaming;
+              config.elements.options.temperature.value = temperature;
+              if (dark) document.documentElement.setAttribute("dark", '');
+              document.documentElement.style.setProperty("--font-size", font + "px");
+              /*  */
+              config.render.sidebar();
+              /*  */
+              if (availability === "downloadable") {
+                window.alert("The Gemini Nano API needs to download training data for the first time. Please press the - Create a new session (+) - button on the left toolbar to start the app.");
+              } else {
+                config.elements.session.click();
+              }
+            }
           }
         } else {
           window.setTimeout(config.app.error, 300);
@@ -443,6 +449,7 @@ var config = {
         target.open = true;
         details.open = true;
         content.textContent = '';
+        /*  */
         const parser = new DOMParser();
         const txt = config.engine.markdown.render(data || '');
         const doc = parser.parseFromString(txt, "text/html");
@@ -729,15 +736,41 @@ var config = {
         }
       },
       "session": {
+        "controller": null,
         "create": async function (e, id) {
           try {
             const tmp = config.engine.ai.session.class;
             const topk = config.storage.read("options-topk") !== undefined ? config.storage.read("options-topk") : config.engine.ai.defaults.topK;
             const temperature = config.storage.read("options-temperature") !== undefined ? config.storage.read("options-temperature") : config.engine.ai.defaults.temperature;
             /*  */
-            const session = await window.ai.createTextSession({
+            document.documentElement.setAttribute("loading", '');
+            config.interface.listeners.session.controller = new AbortController();
+            /*  */
+            const session = await window.LanguageModel.create({
               "topK": Number(topk),
-              "temperature": Number(temperature)
+              "temperature": Number(temperature),
+              /*
+              "expectedInputs": [{
+                "type": "text", 
+                "languages": ["en"]
+              }],
+              "expectedOutputs": [{
+                "type": "text",
+                "languages": ["en"]
+              }],
+              */
+              "monitor": function (m) {
+                m.addEventListener("downloadprogress", function (e) {
+                  if (e) {
+                    if (e.loaded === e.total) {
+                      config.elements.footer.textarea.value = '';
+                    } else {
+                      const current = (e.loaded * 100).toFixed(2);
+                      config.elements.footer.textarea.value = `Downloading training data: ${current}%, please wait...`;
+                    }
+                  }
+                });
+              }
             });
             /*  */
             id = id ? id : Math.floor(Math.random() * 1e7) + '';
@@ -745,6 +778,8 @@ var config = {
             tmp[id] = session;
             config.interface.autoscroll = true;
             config.elements.chat.textContent = '';
+            config.elements.footer.textarea.value = '';
+            document.documentElement.removeAttribute("loading");
             document.documentElement.setAttribute("session", id);
             document.documentElement.removeAttribute("destroyed");
             /*  */
@@ -805,9 +840,9 @@ var config = {
           }
         }
         /*  */
+        let _answer = '';
         let _time = "N/A";
-        let _answer = "N/A";
-        let _question = "N/A";
+        let _question = '';
         let _error = "Could not generate the answer! please try again.";
         /*  */
         try {
@@ -837,16 +872,20 @@ var config = {
                       try {
                         const chats = config.engine.ai.session.chats;
                         const current = chats[id] !== undefined ? chats[id] : [];
+                        const signal = {"signal": config.interface.listeners.session.controller.signal};
                         const streaming = config.storage.read("options-streaming") !== undefined ? config.storage.read("options-streaming") : true;
                         /*  */
                         if (streaming) {
-                          const answer = await config.engine.ai.session.current.promptStreaming(_question);
+                          const answer = await config.engine.ai.session.current.promptStreaming(_question, signal);
+                          /*  */
                           for await (const chunk of answer) {
-                            _answer = chunk ? chunk : _error;
+                            _answer += chunk ? chunk : _error;
+                            /*  */
                             config.render.answer(_answer, node);
                           }
                         } else {
-                          const answer = await config.engine.ai.session.current.prompt(_question);
+                          const answer = await config.engine.ai.session.current.prompt(_question, signal);
+                          /*  */
                           _answer = answer ? answer : _error;
                           config.render.answer(_answer, node);
                         }
